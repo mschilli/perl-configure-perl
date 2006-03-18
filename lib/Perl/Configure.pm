@@ -110,16 +110,20 @@ Perl::Configure - Answer perl's ./Configure questions reproducably
 Compling perl requires a number of configuration steps.
 Running C<./Configure> in a perl source distribution configures it
 for compilation on a given platform. It asks about a hundred questions and
-then creates a C<config.sh> file, which is later to create a makefile.
+then creates a C<config.sh> file, which will later to create a makefile.
 
 However, some answers cause several entries in C<config.sh> to be
 modified. For example, if you say you want a threaded perl, C<Configure>
 will modify 94 different values in C<config.sh>.
 
-So, if you want to create a perl with all settings of another perl, just
-with threading enabled, there's no easy way to do that. Sure, you can
-run Configure, step through all questions one by one. If you botch one,
-you'll have to start over. Very annoying.
+Also, C<./Configure> takes a number of command line options to modify 
+its defaults, but these options don't relate 1:1 to the questions
+C<./Configure> asks.
+
+So, for example, if you want to create a perl with all settings of
+another perl, just with threading enabled, there's no easy way to do
+that. Sure, you can run Configure, step through all questions one by
+one. If you botch one, you'll have to start over. Very annoying.
 
 Perl::Configure to the rescue: It runs Configure, recognizes its
 questions, fills in preprogrammed answers and gives default answers
@@ -151,10 +155,12 @@ The mapping between a Perl::Configure token (like C<threads>) and the
 corresponding question (like C<Build a threading Perl?>) is defined
 in C<Perl::Configure::Questions>. If C<Perl::Configure::Questions>
 doesn't define a pattern to recognize a question Configure asks, the
-run() method will hang and time out after 60 seconds. If you see
+run() method will hang and time out after 60 seconds. 
+    
+B<If you see
 this, please send the question to the module maintainer (see below)
 to have it added to the existing collection and the next release of
-C<Perl::Configure>.
+C<Perl::Configure>>.
 
 Here's the list of the mappings defined in this release:
 
@@ -401,7 +407,7 @@ set C<dir-check> to 'y' to answer Configure's question appropriately:
 
 =head1 AUTHOR
 
-Mike Schilli, m@perlmeister.com
+Mike Schilli, m@perlmeister.com, 2006
 
 =head1 COPYRIGHT AND LICENSE
 

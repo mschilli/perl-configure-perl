@@ -103,7 +103,7 @@ C<patterns()> just runs a quotemeta() on the strings returned by
 
 =head1 AUTHOR
 
-Mike Schilli, m@perlmeister.com
+Mike Schilli, m@perlmeister.com, 2006
 
 =head1 COPYRIGHT AND LICENSE
 
