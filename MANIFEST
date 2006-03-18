@@ -1,6 +1,8 @@
 Changes
+eg/configure-with-threads
+lib/Perl/Configure.pm
+lib/Perl/Configure/Questions.pm
 Makefile.PL
 MANIFEST
 README
-t/Perl-Configure.t
-lib/Perl/Configure.pm
+t/001Basic.t

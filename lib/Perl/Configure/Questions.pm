@@ -6,8 +6,20 @@ use YAML qw(Load);
 our @QA = yaml_read();
 
 ###########################################
+sub new {
+###########################################
+    my($class) = @_;
+
+    my $self = {
+    };
+
+    bless $self, $class;
+}
+
+###########################################
 sub yaml_read {
 ###########################################
+    my($self) = @_;
 
     my $text = join '', <DATA>;
     my @data = Load($text);
@@ -18,6 +30,7 @@ sub yaml_read {
 ###########################################
 sub by_key {
 ###########################################
+    my($self) = @_;
 
     my %by_key = ();
 
@@ -29,8 +42,23 @@ sub by_key {
 }
 
 ###########################################
+sub by_match {
+###########################################
+    my($self) = @_;
+
+    my %by_match = ();
+
+    for (@QA) {
+        $by_match{$_->[1]} = [ $_->[0], $_->[2] ];
+    }
+
+    return \%by_match;
+}
+
+###########################################
 sub questions {
 ###########################################
+    my($self) = @_;
 
     return map { $_->[1] } @QA;
 }
@@ -38,6 +66,7 @@ sub questions {
 ###########################################
 sub patterns {
 ###########################################
+    my($self) = @_;
 
     return map { quotemeta($_) } questions();
 }
@@ -45,6 +74,7 @@ sub patterns {
 ###########################################
 sub tokens {
 ###########################################
+    my($self) = @_;
 
     return map { $_->[0] } @QA;
 }
@@ -111,7 +141,7 @@ __DATA__
 - Build Perl for SOCKS?
 - n
 ---
-- io
+- perlio
 - Use the PerlIO abstraction layer?
 - y
 ---
@@ -416,4 +446,20 @@ __DATA__
 ---
 - make-depend
 - Run make depend now?
+- y
+---
+- dir-check
+- exist.  Use that name anyway?
+- y
+---
+- config-sh
+- Shall I use it to set the defaults?
+- y
+---
+- previous-keep
+- Keep the previous value
+- y
+---
+- ithreads
+- Use the newer interpreter-based ithreads?
 - y
