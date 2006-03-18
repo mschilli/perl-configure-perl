@@ -10,20 +10,19 @@ sub yaml_read {
 ###########################################
 
     my $text = join '', <DATA>;
-    my $data = Load($text);
+    my @data = Load($text);
 
-    return @$data;
+    return @data;
 }
 
 ###########################################
 sub by_key {
 ###########################################
 
-    my @qa     = @QA;
     my %by_key = ();
 
-    while( my($key, $question, $answer) = splice @qa, 0, 3) {
-        $by_key{ $key } = [$question, $answer];
+    for (@QA) {
+        $by_key{$_->[0]} = [ $_->[1], $_->[2] ];
     }
 
     return \%by_key;
@@ -33,10 +32,7 @@ sub by_key {
 sub questions {
 ###########################################
 
-    my $i = 1;
-    my @questions = map { $i++ % 3 ? $_ : () } @QA;
-
-    return @questions;
+    return map { $_->[1] } @QA;
 }
 
 ###########################################
@@ -50,10 +46,7 @@ sub patterns {
 sub tokens {
 ###########################################
 
-    my $i = 1;
-    my @tokens = map { $i++ % 1 ? $_ : () } @QA;
-
-    return @tokens;
+    return map { $_->[0] } @QA;
 }
 
 1;
@@ -420,6 +413,7 @@ __DATA__
 - shell-escape
 - Press return or use a shell escape to edit config.sh
 - ''
+---
 - make-depend
 - Run make depend now?
 - y
