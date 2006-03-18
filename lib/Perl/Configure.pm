@@ -18,7 +18,7 @@ sub new {
     my $self = {
         exp       => Expect->new(),
         yml_file  => undef,
-        timeout   => 60,
+        timeout   => 600,
         questions => Perl::Configure::Questions->new(),
         @options
     };
@@ -158,23 +158,19 @@ undertaking. While C<./Configure> will (almost) always generate a
 C<config.sh> file that can be used later to build perl successfully, a
 hand-edited C<config.sh> file is not guaranteed to work.
 
-TODO:
-Note that this is different from specifying settings to C<./Configure>
-on the command line. Calling
+Note that in most cases you can use C<Configure>'s command line
+options to accomplish the same thing:
 
-    ./Configure -D threads=y -d
+    ./Configure -Dthreads=y -d
 
-lets C<./Configure> create a different configuration file than if you
-answered the question "XXX" with 'y' in the interactive dialog or with
-Perl::Configure.
+However, this means you have to look at the C<Configure> code
+and figure out which setting corresponds to the question.
 
 The mapping between a Perl::Configure token (like C<threads>) and the
 corresponding question (like C<Build a threading Perl?>) is defined
 in C<Perl::Configure::Questions>. If C<Perl::Configure::Questions>
 doesn't define a pattern to recognize a question Configure asks, the
-run() method will hang and time out after 60 seconds. 
-    
-B<If you see
+run() method will hang and time out after 60 seconds. B<If you see
 this, please send the question to the module maintainer (see below)
 to have it added to the existing collection and the next release of
 C<Perl::Configure>>.
@@ -474,6 +470,10 @@ questions to C<Perl::Configure::Questions>:
                   "path-frobnicate" => '/frob',
                 );
     $cfg->run();
+
+If you forget to C<add()> the question and the token beforehand, 
+C<Perl::Configure>'s C<define> method would complain about an unknown
+token and die.
 
 =head1 AUTHOR
 

@@ -6,5 +6,6 @@ use strict;
 
     # Available at http://perlmeister.com/scripts
 use ModDevUtils;
+`adm/table`;
 
 ModDevUtils::release() or exit 0;

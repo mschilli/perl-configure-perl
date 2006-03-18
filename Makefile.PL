@@ -6,10 +6,10 @@ WriteMakefile(
     NAME              => 'Perl::Configure',
     VERSION_FROM      => 'lib/Perl/Configure.pm', # finds $VERSION
     PREREQ_PM         => {
-        YAML          => 0,
-        Expect        => 0,
+        YAML          => 0.35,
+        Expect        => 1.15,
         Data::Dumper  => 0,
-        Log::Log4perl => 0,
+        Log::Log4perl => 1.0,
         Getopt::Long  => 2.35,
     }, # e.g., Module::Name => 1.1
     EXE_FILES         => [ 'eg/perl-configure' ],
