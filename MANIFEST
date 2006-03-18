@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Perl-Configure.t
+lib/Perl/Configure.pm

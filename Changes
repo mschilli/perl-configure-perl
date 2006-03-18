@@ -1,0 +1,6 @@
+Revision history for Perl extension Perl::Configure.
+
+0.01  Fri Mar 17 16:05:34 2006
+	- original version; created by h2xs 1.23 with options
+		-AXn Perl::Configure
+
