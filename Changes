@@ -1,4 +1,6 @@
 Revision history for Perl extension Perl::Configure.
 
+TODO: Spaces => regexes (\s+)
+
 0.01 03/17/2006
     (ms) Where it all began.

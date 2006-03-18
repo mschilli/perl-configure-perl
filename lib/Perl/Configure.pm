@@ -149,7 +149,10 @@ and
     Use the newer interpreter-based ithreads?
 
 which will then cause 94 variables to be set by Configure in
-C<config.sh>.
+C<config.sh>. Modifying C<config.sh> in this case would be a hopeless
+undertaking. While C<./Configure> will (almost) always generate a
+C<config.sh> file that can be used later to build perl successfully, a
+hand-edited C<config.sh> file is not guaranteed to work.
 
 The mapping between a Perl::Configure token (like C<threads>) and the
 corresponding question (like C<Build a threading Perl?>) is defined
