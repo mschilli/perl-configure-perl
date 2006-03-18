@@ -31,7 +31,7 @@ for my $key (sort keys %$bk) {
 $t->addRow($keywrapped, $text);
 }
 my $str = $t->draw();
-$str =~ s/^/    /g;
+$str =~ s/^/    /mg;
 #print $str;
 
 my $file = "lib/Perl/Configure.pm";
@@ -39,7 +39,7 @@ open FILE, "<$file" or die "cannot open $file";
 my $data = join '', <FILE>;
 close FILE;
 
-$data =~ s/=for TABLE_START.*?TABLE_END\n/=for TABLE_START\n$str\n\for TABLE_END/gs;
+$data =~ s/=for TABLE_START.*?=for TABLE_END/=for TABLE_START\n\n$str\n\n=for TABLE_END/gs;
 
 open FILE, ">$file" or die "";
 print FILE $data;
