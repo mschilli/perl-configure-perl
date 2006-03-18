@@ -10,7 +10,9 @@ WriteMakefile(
         Expect        => 0,
         Data::Dumper  => 0,
         Log::Log4perl => 0,
+        Getopt::Long  => 2.35,
     }, # e.g., Module::Name => 1.1
+    EXE_FILES         => [ 'eg/perl-configure' ],
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Perl/Configure.pm', # retrieve abstract from module
        AUTHOR         => 'Mike Schilli <m@perlmeister.com>') : ()),

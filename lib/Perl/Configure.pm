@@ -362,6 +362,26 @@ Here's the list of the mappings defined in this release:
     | path-site-specific-arch   | Pathname for the site-specific |
     |                           | architecture-dependent library |
     |                           | files?                         |
+    | path-vendor-specific      | Pathname for the               |
+    |                           | vendor-supplied                |
+    |                           | library files?                 |
+    | path-vendor-specific-arch | Pathname for vendor-supplied   |
+    |                           | architecture-dependent files?  |
+    | path-vendor-specific-bin  | Pathname for the               |
+    |                           | vendor-supplied                |
+    |                           | executables directory?         |
+    | path-vendor-specific-html | Pathname for the               |
+    |                           | vendor-supplied html           |
+    |                           | pages?                         |
+    | path-vendor-specific-man1 | Pathname for the               |
+    |                           | vendor-supplied manual         |
+    |                           | section 1 pages?               |
+    | path-vendor-specific-man3 | Pathname for the               |
+    |                           | vendor-supplied manual         |
+    |                           | section 3 pages?               |
+    | path-vendor-specific-scri | Pathname for the               |
+    | pts                       | vendor-supplied                |
+    |                           | scripts directory?             |
     | perlio                    | Use the PerlIO abstraction     |
     |                           | layer?                         |
     | prefix                    | Installation prefix to use?    |
@@ -388,6 +408,8 @@ Here's the list of the mappings defined in this release:
     | vendor-specific           | Do you want to configure       |
     |                           | vendor-specific add-on         |
     |                           | directories?                   |
+    | vendor-specific-prefix    | Installation prefix to use for |
+    |                           | vendor-supplied add-ons        |
     | version-specific-only     | Do you want to install only    |
     |                           | the                            |
     |                           | version-specific parts of      |

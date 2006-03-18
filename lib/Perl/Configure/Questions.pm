@@ -76,7 +76,27 @@ sub patterns {
 ###########################################
     my($self) = @_;
 
-    return map { quotemeta($_) } questions();
+    my @patterns = ();
+
+    for my $question (questions()) {
+
+        my $pattern = "";
+        my $rest    = $question;
+
+        { if($rest =~ /\G(.*?)ANY{.*?}(.*)/g) {
+              $pattern .= quotemeta($1);
+              $pattern .= ".*?";
+              $rest     = $2;
+              redo;
+          } else {
+              $pattern .= quotemeta($rest);
+          }
+        }
+
+        push @patterns, $pattern;
+    }
+
+    return @patterns;
 }
 
 ###########################################
@@ -113,6 +133,40 @@ Perl::Configure::Questions - Questions asked by perl's Configure
 C<questions()> returns a list of questions asked by perl's Configure.
 C<patterns()> just runs a quotemeta() on the strings returned by
 @questions. This module is used internally by Perl::Configure.
+
+=head2 Question Format
+
+The questions recognized by C<Perl::Configure> are stored in YAML format
+in the __DATA__ section of C<Perl::Configure::Questions>:
+
+    ...
+    ---
+    - vendor-specific-prefix
+    - Installation prefix to use for vendor-supplied add-ons?
+    - '/foobar'
+    ---
+    ...
+
+The first line in each tuple (separated by --- according to YAML rules)
+holds the token, C<vendor-specific-prefix> in the example above. The second
+line shows the question regular expression and the third line a yet
+unused 'sample answer'.
+
+Note that regex metacharacters in the question line are B<not> escaped.
+Instead, if a part of the question should match I<any> text, use the
+ANY{...} clause:
+
+    ...
+    ---
+    - compiler-flags-special
+    - Any special flags to pass to ANY{cc -c} to compile shared library modules?
+    - '-fpic'
+    ---
+    ...
+
+This will cause the question matcher to accept any text instead of
+C<cc -c>, which comes in handy if Configure dynamically replaces these
+parts based on previous selections.
 
 =head1 AUTHOR
 
@@ -259,13 +313,41 @@ __DATA__
 - Pathname for the site-specific architecture-dependent library files?
 - '/home/username/PERL/lib/perl5/site_perl/5.8/i686-linux'
 ---
-- vendor-specific-addon
+- vendor-specific
 - Do you want to configure vendor-specific add-on directories?
 - n
 ---
-- vendor-specific-addon-prefix
+- vendor-specific-prefix
 - Installation prefix to use for vendor-supplied add-ons
-- '/vendor'
+- '/foobar'
+---
+- path-vendor-specific
+- Pathname for the vendor-supplied library files?
+- '/foobar/lib/perl5/vendor_perl/5.8.7'
+---
+- path-vendor-specific-arch
+- Pathname for vendor-supplied architecture-dependent files?
+- '/foobar/lib/perl5/vendor_perl/5.8.7/arch'
+---
+- path-vendor-specific-bin
+- Pathname for the vendor-supplied executables directory?
+- '/foobar/lib/perl5/vendor_perl/bin'
+---
+- path-vendor-specific-html
+- Pathname for the vendor-supplied html pages?
+- '/foobar/lib/perl5/vendor_perl/html'
+---
+- path-vendor-specific-man1
+- Pathname for the vendor-supplied manual section 1 pages?
+- '/foobar/lib/perl5/vendor_perl/man1'
+---
+- path-vendor-specific-man3
+- Pathname for the vendor-supplied manual section 3 pages?
+- '/foobar/lib/perl5/vendor_perl/man3'
+---
+- path-vendor-specific-scripts
+- Pathname for the vendor-supplied scripts directory?
+- '/foobar/lib/perl5/vendor_perl/scripts'
 ---
 - dirs-additional
 - Colon-separated list of additional directories for perl to search?
@@ -296,7 +378,7 @@ __DATA__
 - n
 ---
 - lib-extract-with-nm
-- Shall I use /usr/bin/nm to extract C symbols from the libraries?
+- Shall I use ANY{/usr/bin/nm} to extract C symbols from the libraries?
 - n
 ---
 - load-dynamic
@@ -308,7 +390,7 @@ __DATA__
 - ext/DynaLoader/dl_dlopen.xs
 ---
 - compiler-flags-special
-- Any special flags to pass to cc -c to compile shared library modules?
+- Any special flags to pass to ANY{cc -c} to compile shared library modules?
 - '-fpic'
 ---
 - lib-dynamic-create-cmd
@@ -316,11 +398,11 @@ __DATA__
 - cc
 ---
 - lib-dynamic-create-flags
-- Any special flags to pass to cc to create a dynamically loaded library?
+- Any special flags to pass to ANY{cc} to create a dynamically loaded library?
 - '-shared -L/usr/local/lib'
 ---
 - lib-dynamic-flags
-- Any special flags to pass to cc to use dynamic linking?
+- Any special flags to pass to ANY{cc} to use dynamic linking?
 - '-Wl,-E'
 ---
 - libperl
