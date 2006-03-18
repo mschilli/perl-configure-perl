@@ -30,4 +30,17 @@ for my $key (sort keys %$bk) {
 #my $eg = wrap("", "", $bk->{$key}->[1]);
 $t->addRow($keywrapped, $text);
 }
-print $t->draw();
+my $str = $t->draw();
+$str =~ s/^/    /g;
+#print $str;
+
+my $file = "lib/Perl/Configure.pm";
+open FILE, "<$file" or die "cannot open $file";
+my $data = join '', <FILE>;
+close FILE;
+
+$data =~ s/=for TABLE_START.*?TABLE_END\n/=for TABLE_START\n$str\n\for TABLE_END/gs;
+
+open FILE, ">$file" or die "";
+print FILE $data;
+close FILE;

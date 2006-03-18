@@ -449,7 +449,7 @@ __DATA__
 - y
 ---
 - dir-check
-- exist.  Use that name anyway?
+- Use that name anyway?
 - y
 ---
 - config-sh
