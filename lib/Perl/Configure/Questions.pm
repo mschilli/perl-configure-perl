@@ -17,6 +17,14 @@ sub new {
 }
 
 ###########################################
+sub add {
+###########################################
+    my($self, $token, $question, $answer) = @_;
+
+    push @QA, [$token, $question, $answer];
+}
+
+###########################################
 sub yaml_read {
 ###########################################
     my($self) = @_;
@@ -89,11 +97,16 @@ Perl::Configure::Questions - Questions asked by perl's Configure
 
   use Perl::Configure::Questions;
 
-  my @questions = Perl::Configure::Questions->questions();
-  my @patterns  = Perl::Configure::Questions->patterns();
-  my @tokens    = Perl::Configure::Questions->tokens();
+  my $q = Perl::Configure::Questions->new();
 
-  my $by_key    = Perl::Configure::Questions->by_key();
+      # Add a new (customized) token/question
+  $q->add($token, $question, $answer)
+
+      # These are used by Perl::Configure internally
+  my @questions = $q->questions();
+  my @patterns  = $q->patterns();
+  my @tokens    = $q->tokens();
+  my $by_key    = $q->by_key();
 
 =head1 DESCRIPTION
 
@@ -246,9 +259,13 @@ __DATA__
 - Pathname for the site-specific architecture-dependent library files?
 - '/home/username/PERL/lib/perl5/site_perl/5.8/i686-linux'
 ---
-- vendor-specific
+- vendor-specific-addon
 - Do you want to configure vendor-specific add-on directories?
 - n
+---
+- vendor-specific-addon-prefix
+- Installation prefix to use for vendor-supplied add-ons
+- '/vendor'
 ---
 - dirs-additional
 - Colon-separated list of additional directories for perl to search?

@@ -19,10 +19,10 @@ sub new {
         exp       => Expect->new(),
         yml_file  => undef,
         timeout   => 60,
+        questions => Perl::Configure::Questions->new(),
         @options
     };
 
-    $self->{questions} = Perl::Configure::Questions->new();
     $self->{bk}        = $self->{questions}->by_key(),
     $self->{bm}        = $self->{questions}->by_match(),
 
@@ -94,6 +94,10 @@ Perl::Configure - Answer perl's ./Configure questions reproducably
 
 =head1 SYNOPSIS
 
+      # Command line:
+  $ perl-configure threads=y
+
+      # Perl
   use Perl::Configure;
 
   my $configurator = Perl::Configure->new();
@@ -153,6 +157,16 @@ C<config.sh>. Modifying C<config.sh> in this case would be a hopeless
 undertaking. While C<./Configure> will (almost) always generate a
 C<config.sh> file that can be used later to build perl successfully, a
 hand-edited C<config.sh> file is not guaranteed to work.
+
+TODO:
+Note that this is different from specifying settings to C<./Configure>
+on the command line. Calling
+
+    ./Configure -D threads=y -d
+
+lets C<./Configure> create a different configuration file than if you
+answered the question "XXX" with 'y' in the interactive dialog or with
+Perl::Configure.
 
 The mapping between a Perl::Configure token (like C<threads>) and the
 corresponding question (like C<Build a threading Perl?>) is defined
@@ -407,6 +421,37 @@ set C<dir-check> to 'y' to answer Configure's question appropriately:
     $cfg->define( "prefix"    => '/quack', 
                   "dir-check" => 'y',
                 );
+
+=head1 ADDING QUESTIONS
+
+The questions that C<Perl::Configure> recognizes are stored in 
+the __DATA__ section of C<Perl::Configure::Questions> in YAML
+format. New releases of C<Perl::Configure> might add to this section
+(or change its format, so don't rely on it, use the API instead).
+
+If you encounter a C<Configure> question that C<Perl::Configure> doesn't
+recognize (and therefore first hangs and then aborts), the best way to
+fix this is submit the question, a proposed token name and a sample
+answer to the maintainer of this module (see below). This way, 
+C<Perl::Configure> can be improved and other people can benefit from
+updates.
+
+If you want a quick fix (or need to fix something very specific to
+your platform that no one else will find useful), you can add
+questions to C<Perl::Configure::Questions>:
+
+    my $questions = Perl::Configure::Questions->new();
+
+    $questions->add( "path-frobnicate",                 # token
+                     "What's your frobnication path?",  # question
+                     "/frob" );                         # sample answer
+
+    my $cfg = Perl::Configure->new(questions => $questions);
+
+    $cfg->define( "prefix"          => '/somewhere', 
+                  "path-frobnicate" => '/frob',
+                );
+    $cfg->run();
 
 =head1 AUTHOR
 
