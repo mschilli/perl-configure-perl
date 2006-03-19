@@ -90,7 +90,7 @@ __END__
 
 =head1 NAME
 
-Perl::Configure - Answer perl's ./Configure questions reproducably
+Perl::Configure - Answer perl's ./Configure questions reproducibly
 
 =head1 SYNOPSIS
 

@@ -3,7 +3,7 @@
 ######################################################################
 
 NAME
-    Perl::Configure - Answer perl's ./Configure questions reproducably
+    Perl::Configure - Answer perl's ./Configure questions reproducibly
 
 SYNOPSIS
           # Command line:
