@@ -188,6 +188,8 @@ Here's the list of the mappings defined in this release:
     |                           | support, if                    |
     |                           | available?                     |
     | arch                      | What is your architecture name |
+    | carriage-return           | Type carriage return to        |
+    |                           | continue                       |
     | ccflags                   | Any additional cc flags?       |
     | char-size                 | What is the size of a          |
     |                           | character (in                  |
@@ -197,8 +199,8 @@ Here's the list of the mappings defined in this release:
     |                           | or yacc                        |
     |                           | or bison -y) shall I use?      |
     | compiler-flags-special    | Any special flags to pass to   |
-    |                           | cc -c to                       |
-    |                           | compile shared library         |
+    |                           | ANY{cc -c}                     |
+    |                           | to compile shared library      |
     |                           | modules?                       |
     | config-sh                 | Shall I use it to set the      |
     |                           | defaults?                      |
@@ -250,18 +252,18 @@ Here's the list of the mappings defined in this release:
     |                           | create                         |
     |                           | dynamic libraries?             |
     | lib-dynamic-create-flags  | Any special flags to pass to   |
-    |                           | cc to                          |
+    |                           | ANY{cc} to                     |
     |                           | create a dynamically loaded    |
     |                           | library?                       |
     | lib-dynamic-flags         | Any special flags to pass to   |
-    |                           | cc to use                      |
-    |                           | dynamic linking?               |
+    |                           | ANY{cc} to                     |
+    |                           | use dynamic linking?           |
     | lib-extension             | What is the file extension     |
     |                           | used for                       |
     |                           | shared libraries?              |
-    | lib-extract-with-nm       | Shall I use /usr/bin/nm to     |
-    |                           | extract C                      |
-    |                           | symbols from the libraries?    |
+    | lib-extract-with-nm       | Shall I use ANY{/usr/bin/nm}   |
+    |                           | to extract                     |
+    |                           | C symbols from the libraries?  |
     | libperl                   | Build a shared libperl.so      |
     | libs                      | What libraries to use?         |
     | load-dynamic              | Do you wish to use dynamic     |

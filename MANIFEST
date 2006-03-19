@@ -1,8 +1,12 @@
+adm/release
+adm/table
 Changes
 eg/configure-with-threads
+eg/perl-configure
 lib/Perl/Configure.pm
 lib/Perl/Configure/Questions.pm
 Makefile.PL
 MANIFEST
 README
 t/001Basic.t
+t/002Patterns.t
