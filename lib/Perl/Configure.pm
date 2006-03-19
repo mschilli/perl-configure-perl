@@ -114,20 +114,12 @@ Perl::Configure - Answer perl's ./Configure questions reproducably
 Compling perl requires a number of configuration steps.
 Running C<./Configure> in a perl source distribution configures it
 for compilation on a given platform. It asks about a hundred questions and
-then creates a C<config.sh> file, which will later to create a makefile.
+then creates a C<config.sh> file, which will later be used
+to create a makefile.
 
 However, some answers cause several entries in C<config.sh> to be
 modified. For example, if you say you want a threaded perl, C<Configure>
 will modify 94 different values in C<config.sh>.
-
-Also, C<./Configure> takes a number of command line options to modify 
-its defaults, but these options don't relate 1:1 to the questions
-C<./Configure> asks.
-
-So, for example, if you want to create a perl with all settings of
-another perl, just with threading enabled, there's no easy way to do
-that. Sure, you can run Configure, step through all questions one by
-one. If you botch one, you'll have to start over. Very annoying.
 
 Perl::Configure to the rescue: It runs Configure, recognizes its
 questions, fills in preprogrammed answers and gives default answers
@@ -476,6 +468,10 @@ questions to C<Perl::Configure::Questions>:
 If you forget to C<add()> the question and the token beforehand, 
 C<Perl::Configure>'s C<define> method would complain about an unknown
 token and die.
+
+=head1 SEE ALSO
+
+Perl::Configure::Questions
 
 =head1 AUTHOR
 
