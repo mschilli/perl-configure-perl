@@ -5,8 +5,13 @@ use warnings;
 use Pod::Usage;
 use Perl::Configure;
 use Getopt::Std;
+use Log::Log4perl qw(:easy);
 
-getopts("h", \my %opts);
+getopts("hv", \my %opts);
+
+if($opts{v}) {
+    Log::Log4perl->easy_init({level => $DEBUG, file => "stdout"});
+}
 
 if($opts{h}) {
     pod2usage("");
