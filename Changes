@@ -1,7 +1,10 @@
 Revision history for Perl extension Perl::Configure.
 
-0.02 03/18/2006
+0.02 03/30/2006
     (ms) fixed typo (thanks chocolateboy)
+    (ms) verbose mode for perl-configure
+    (ms) fixed yacc question
+    (ms) fixed bug with ANY{} pattern recognition
 
 0.01 03/17/2006
     (ms) Where it all began.

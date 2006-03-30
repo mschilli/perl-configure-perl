@@ -24,7 +24,7 @@ sub new {
     };
 
     $self->{bk}        = $self->{questions}->by_key(),
-    $self->{bm}        = $self->{questions}->by_match(),
+    $self->{bp}        = $self->{questions}->by_pattern(),
 
     $self->{exp}->raw_pty(1);
 
@@ -52,6 +52,8 @@ sub run {
 
     unlink "Policy.sh";
 
+    my @patterns = $self->{questions}->patterns();
+
     $self->{exp}->spawn("./Configure")
         or LOGDIE "Cannot spawn: $!\n";
 
@@ -59,24 +61,34 @@ sub run {
             $before_match, $after_match) = 
                 $self->{exp}->expect(
                              $self->{timeout}, 
-                             map { -re => $_ } 
-                                 $self->{questions}->patterns());
+                             map { -re => $_ } @patterns);
 
         if(defined $match) {
 
             DEBUG "Match: [$match]";
 
-            my $token = $self->{bm}->{$match}->[0];
+            my $token = $self->{bp}->{
+              $patterns[$matched_pattern_position]}->[0];
+
+            if(! defined $token) {
+                LOGDIE "Internal error: match($match) but no token: ",
+                       "pos=$matched_pattern_position ",
+                       "error=$error ",
+                       "before=$before_match ",
+                       "after=$after_match ",
+                       ;
+            }
 
             my $response = "";
 
             if(exists $self->{define}->{$token}) {
                 $response = $self->{define}->{$token};
-                INFO "Overriding with [$response}";
+                INFO "Overriding with [$response]";
             } else {
                 INFO "Filling in [DEFAULT]";
             }
 
+            DEBUG "Response: [$response]";
             $self->{exp}->send("$response\n");
 
             redo;

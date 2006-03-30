@@ -50,6 +50,21 @@ sub by_key {
 }
 
 ###########################################
+sub by_pattern {
+###########################################
+    my($self) = @_;
+
+    my @patterns = $self->patterns();
+    my %by_match = ();
+
+    for (@QA) {
+        $by_match{shift @patterns} = [ $_->[0], $_->[2] ];
+    }
+
+    return \%by_match;
+}
+
+###########################################
 sub by_match {
 ###########################################
     my($self) = @_;
@@ -298,7 +313,7 @@ __DATA__
 - y
 ---
 - malloc-perl
-- Do you wish to attempt to use the malloc that comes with perl5?
+- Do you wish to attempt to use the malloc that comes with
 - n
 ---
 - path-addon
@@ -522,7 +537,7 @@ __DATA__
 - '/usr/bin/less'
 ---
 - compiler-compiler
-- Which compiler compiler (byacc or yacc or bison -y) shall I use?
+- Which compiler compiler ANY{(byacc or yacc or bison -y)} shall I use?
 - '/usr/bin/byacc'
 ---
 - dynamic-extensions
