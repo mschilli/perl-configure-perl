@@ -68,7 +68,7 @@ sub run {
             DEBUG "Match: [$match]";
 
             my $token = $self->{bp}->{
-              $patterns[$matched_pattern_position]}->[0];
+              $patterns[$matched_pattern_position-1]}->[0];
 
             if(! defined $token) {
                 LOGDIE "Internal error: match($match) but no token: ",
