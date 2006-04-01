@@ -5,6 +5,7 @@ Revision history for Perl extension Perl::Configure.
     (ms) verbose mode for perl-configure
     (ms) fixed yacc question
     (ms) fixed bug with ANY{} pattern recognition
+    (ms) fixed token table format
 
 0.01 03/17/2006
     (ms) Where it all began.
