@@ -46,6 +46,10 @@ __END__
 
 Prints this manual page in text format.
 
+=item B<-v>
+
+Verbose mode (Log4perl activated).
+
 =back
 
 =head1 DESCRIPTION
