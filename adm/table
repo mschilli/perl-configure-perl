@@ -23,7 +23,7 @@ for my $key (sort keys %$bk) {
     $Text::Wrap::columns=26;
     my $keywrapped = wrap("", "", $key);
 
-    $Text::Wrap::columns=40;
+    $Text::Wrap::columns=30;
     my $text = wrap("", "", $bk->{$key}->[0]);
 
 #$Text::Wrap::columns=10;
