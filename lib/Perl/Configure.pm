@@ -8,7 +8,7 @@ use Data::Dumper;
 use YAML qw(Dump LoadFile);
 use Log::Log4perl qw(:easy);
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 ###########################################
 sub new {
@@ -256,6 +256,8 @@ Here's the list of the mappings defined in this release:
     |                           | to extract C symbols from the |
     |                           | libraries?                    |
     | libperl                   | Build a shared libperl.so     |
+    | libperl-name              | What name do you want to give |
+    |                           | to the shared libperl         |
     | libs                      | What libraries to use?        |
     | load-dynamic              | Do you wish to use dynamic    |
     |                           | loading?                      |

@@ -1,5 +1,5 @@
 ######################################################################
-    Perl::Configure 0.02
+    Perl::Configure 0.03
 ######################################################################
 
 NAME
@@ -152,6 +152,8 @@ DESCRIPTION
         |                           | to extract C symbols from the |
         |                           | libraries?                    |
         | libperl                   | Build a shared libperl.so     |
+        | libperl-name              | What name do you want to give |
+        |                           | to the shared libperl         |
         | libs                      | What libraries to use?        |
         | load-dynamic              | Do you wish to use dynamic    |
         |                           | loading?                      |

@@ -585,3 +585,7 @@ __DATA__
 - keep-reco
 - Keep the recommended value
 - ''
+---
+- libperl-name
+- What name do you want to give to the shared libperl
+- 'libperl.so'
