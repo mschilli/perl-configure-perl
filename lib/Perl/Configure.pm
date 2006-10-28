@@ -80,12 +80,17 @@ sub run {
             }
 
             my $response = "";
+            DEBUG "Entry for token '$token': ", Dumper($self->{bk}->{$token});
+
+                # Grab default answer if existent
+            my $override = $self->{bk}->{$token}->[2];
+            $response = $override if defined $override;
 
             if(exists $self->{define}->{$token}) {
                 $response = $self->{define}->{$token};
                 INFO "Overriding with [$response]";
             } else {
-                INFO "Filling in [DEFAULT]";
+                INFO "Filling in [DEFAULT=$response]";
             }
 
             DEBUG "Response: [$response]";
@@ -424,7 +429,7 @@ recognize (and therefore first hangs and then aborts), the best way to
 fix this is submit the question, a proposed token name and a sample
 answer to the maintainer of this module (see below). This way, 
 C<Perl::Configure> can be improved and other people can benefit from
-updates.
+your update.
 
 If you want a quick fix (or need to fix something very specific to
 your platform that no one else will find useful), you can add
@@ -434,7 +439,8 @@ questions to C<Perl::Configure::Questions>:
 
     $questions->add( "path-frobnicate",                 # token
                      "What's your frobnication path?",  # question
-                     "/frob" );                         # sample answer
+                     "/frob",                           # sample answer
+                   );
 
     my $cfg = Perl::Configure->new(questions => $questions);
 
@@ -446,6 +452,9 @@ questions to C<Perl::Configure::Questions>:
 If you forget to C<add()> the question and the token beforehand, 
 C<Perl::Configure>'s C<define> method would complain about an unknown
 token and die.
+
+There is also an optional forth parameter to override Configure's defaults,
+please check the Perl::Configure::Questions documentation for details.
 
 =head1 SEE ALSO
 

@@ -19,9 +19,10 @@ sub new {
 ###########################################
 sub add {
 ###########################################
-    my($self, $token, $question, $answer) = @_;
+    my($self, $token, $question, 
+       $sample_answer, $override) = @_;
 
-    push @QA, [$token, $question, $answer];
+    push @QA, [$token, $question, $sample_answer, $override];
 }
 
 ###########################################
@@ -43,7 +44,7 @@ sub by_key {
     my %by_key = ();
 
     for (@QA) {
-        $by_key{$_->[0]} = [ $_->[1], $_->[2] ];
+        $by_key{$_->[0]} = [ $_->[1], $_->[2], $_->[3] ];
     }
 
     return \%by_key;
@@ -58,7 +59,7 @@ sub by_pattern {
     my %by_match = ();
 
     for (@QA) {
-        $by_match{shift @patterns} = [ $_->[0], $_->[2] ];
+        $by_match{shift @patterns} = [ $_->[0], $_->[2], $_->[3] ];
     }
 
     return \%by_match;
@@ -135,7 +136,7 @@ Perl::Configure::Questions - Questions asked by perl's Configure
   my $q = Perl::Configure::Questions->new();
 
       # Add a new (customized) token/question
-  $q->add($token, $question, $answer)
+  $q->add($token, $question, $sample_answer, $override)
 
       # These are used by Perl::Configure internally
   my @questions = $q->questions();
@@ -164,10 +165,33 @@ in the __DATA__ section of C<Perl::Configure::Questions>:
 
 The first line in each tuple (separated by --- according to YAML rules)
 holds the token, C<vendor-specific-prefix> in the example above. The second
-line shows the question regular expression and the third line a yet
-unused 'sample answer'.
+line shows the question regular expression and the third line a
+'sample answer', which is just used for documentation purposes.
 
-Note that regex metacharacters in the question line are B<not> escaped.
+=head2 Overriding Configure's defaults by default
+
+If there is an optional forth line specifying an override answer, 
+Perl::Configure will use this answer on a match that does not have 
+an answer defined by the user. For example, when a part of the installation
+path is missing, perl's Configure will ask "Use that name anyway?" and 
+provide "n" as a default. This, of course, is unfortunate, since accepting
+the default will cause Configure to pop the question again and have
+Perl::Configure enter an endless loop.
+
+For this reason, "dir-check" has a fourth parameter defined that overrides
+Configure's default of "n" with "y":
+
+    - dir-check
+    - Use that name anyway?
+    - n
+    - y
+
+Same holds true for the question of reusing an existing config.sh file,
+which gets overridden to "n" to start from a clean slate every time.
+
+=head2 Fuzzy matching
+
+Note that regex meta characters in the question line are B<not> escaped.
 Instead, if a part of the question should match I<any> text, use the
 ANY{...} clause:
 
@@ -205,6 +229,7 @@ __DATA__
 ---
 - config-sh-reuse
 - I see a config.sh file
+- n
 - n
 ---
 - os-defaults
@@ -564,6 +589,7 @@ __DATA__
 ---
 - dir-check
 - Use that name anyway?
+- n
 - y
 ---
 - config-sh

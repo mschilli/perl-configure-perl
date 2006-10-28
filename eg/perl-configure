@@ -54,11 +54,12 @@ Verbose mode (Log4perl activated).
 
 =head1 DESCRIPTION
 
-perl-configure blah blah blah.
+perl-configure is a utility script to run Perl::Configure from
+the command line.
 
 =head1 EXAMPLES
 
-  $ perl-configure -x foo bar
+  $ perl-configure prefix=/path optimizer="-g -O2"
 
 =head1 LEGALESE
 
