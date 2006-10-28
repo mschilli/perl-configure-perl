@@ -314,8 +314,8 @@ ADDING QUESTIONS
     recognize (and therefore first hangs and then aborts), the best way to
     fix this is submit the question, a proposed token name and a sample
     answer to the maintainer of this module (see below). This way,
-    "Perl::Configure" can be improved and other people can benefit from
-    updates.
+    "Perl::Configure" can be improved and other people can benefit from your
+    update.
 
     If you want a quick fix (or need to fix something very specific to your
     platform that no one else will find useful), you can add questions to
@@ -325,7 +325,8 @@ ADDING QUESTIONS
 
         $questions->add( "path-frobnicate",                 # token
                          "What's your frobnication path?",  # question
-                         "/frob" );                         # sample answer
+                         "/frob",                           # sample answer
+                       );
 
         my $cfg = Perl::Configure->new(questions => $questions);
 
@@ -337,6 +338,10 @@ ADDING QUESTIONS
     If you forget to "add()" the question and the token beforehand,
     "Perl::Configure"'s "define" method would complain about an unknown
     token and die.
+
+    There is also an optional forth parameter to override Configure's
+    defaults, please check the Perl::Configure::Questions documentation for
+    details.
 
 SEE ALSO
     Perl::Configure::Questions

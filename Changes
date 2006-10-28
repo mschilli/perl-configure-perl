@@ -3,6 +3,8 @@ Revision history for Perl extension Perl::Configure.
 0.04 10/28/2006
     (ms) Added optional override field to Perl::Configure::Questions.
 
+0.04 2006/10/28
+
 0.03 08/25/2006
     (ms) added libperl question
 
