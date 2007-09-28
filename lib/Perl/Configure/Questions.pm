@@ -26,6 +26,14 @@ sub add {
 }
 
 ###########################################
+sub remove {
+###########################################
+    my($self, $token) = @_;
+
+    @QA = grep { $_->[0] ne $token } @QA;
+}
+
+###########################################
 sub yaml_read {
 ###########################################
     my($self) = @_;
@@ -206,6 +214,22 @@ ANY{...} clause:
 This will cause the question matcher to accept any text instead of
 C<cc -c>, which comes in handy if Configure dynamically replaces these
 parts based on previous selections.
+
+=head2 Remove questions
+
+To debug problems with automatically provided answers that cause
+endless loops during the configuration process, it sometimes helps 
+to remove a question from the Perl::Configure pool:
+
+  my $q = Perl::Configure::Questions->new();
+  $q->remove('dynamic-extensions');
+
+  my $conf = Perl::Configure->new( questions => $q );
+
+In this example, Perl::Configure won't recognize the question on dynamic 
+extentions anymore and therefore block the Configure process at this question,
+allowing the operator to examine the question and the proposed answer
+thoroughly.
 
 =head1 AUTHOR
 
@@ -615,3 +639,19 @@ __DATA__
 - libperl-name
 - What name do you want to give to the shared libperl
 - 'libperl.so'
+---
+- devel-release
+- Do you really want to continue?
+- 'n'
+---
+- relocatable-inc
+- Use relocatable @INC?
+- 'n'
+---
+- build-with-mad
+- Build Perl with MAD?
+- 'n'
+---
+- extensions
+- What extensions do you wish to include?
+- ''

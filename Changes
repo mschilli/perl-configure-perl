@@ -1,5 +1,9 @@
 Revision history for Perl extension Perl::Configure.
 
+0.05 09/28/2007
+    (ms) Added remove() method to Perl::Configure::Questions.
+    (ms) Added missing perl-5.9 questions
+
 0.04 10/28/2006
     (ms) Added optional override field to Perl::Configure::Questions.
 

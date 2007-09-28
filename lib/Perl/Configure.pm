@@ -8,7 +8,7 @@ use Data::Dumper;
 use YAML qw(Dump LoadFile);
 use Log::Log4perl qw(:easy);
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 ###########################################
 sub new {
@@ -197,6 +197,7 @@ Here's the list of the mappings defined in this release:
     |                           | support, if available?        |
     | arch                      | What is your architecture     |
     |                           | name                          |
+    | build-with-mad            | Build Perl with MAD?          |
     | carriage-return           | Type carriage return to       |
     |                           | continue                      |
     | ccflags                   | Any additional cc flags?      |
@@ -212,6 +213,8 @@ Here's the list of the mappings defined in this release:
     | config-sh                 | Shall I use it to set the     |
     |                           | defaults?                     |
     | config-sh-reuse           | I see a config.sh file        |
+    | devel-release             | Do you really want to         |
+    |                           | continue?                     |
     | dir-check                 | Use that name anyway?         |
     | dirs-additional           | Colon-separated list of       |
     |                           | additional directories for    |
@@ -224,6 +227,8 @@ Here's the list of the mappings defined in this release:
     | email                     | What is your e-mail address?  |
     | email-admin               | Perl administrator e-mail     |
     |                           | address                       |
+    | extensions                | What extensions do you wish   |
+    |                           | to include?                   |
     | fast-stdio                | Use the "fast stdio" if       |
     |                           | available?                    |
     | files-large               | Try to understand large       |
@@ -367,6 +372,7 @@ Here's the list of the mappings defined in this release:
     | previous-keep             | Keep the previous value       |
     | random-func               | Use which function to         |
     |                           | generate random numbers?      |
+    | relocatable-inc           | Use relocatable @INC?         |
     | setuid-emu                | Do you want to do             |
     |                           | setuid/setgid emulation?      |
     | setuid-secure             | Does your kernel have         |

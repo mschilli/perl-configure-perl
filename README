@@ -1,5 +1,5 @@
 ######################################################################
-    Perl::Configure 0.04
+    Perl::Configure 0.05
 ######################################################################
 
 NAME
@@ -88,6 +88,7 @@ DESCRIPTION
         |                           | support, if available?        |
         | arch                      | What is your architecture     |
         |                           | name                          |
+        | build-with-mad            | Build Perl with MAD?          |
         | carriage-return           | Type carriage return to       |
         |                           | continue                      |
         | ccflags                   | Any additional cc flags?      |
@@ -103,6 +104,8 @@ DESCRIPTION
         | config-sh                 | Shall I use it to set the     |
         |                           | defaults?                     |
         | config-sh-reuse           | I see a config.sh file        |
+        | devel-release             | Do you really want to         |
+        |                           | continue?                     |
         | dir-check                 | Use that name anyway?         |
         | dirs-additional           | Colon-separated list of       |
         |                           | additional directories for    |
@@ -115,6 +118,8 @@ DESCRIPTION
         | email                     | What is your e-mail address?  |
         | email-admin               | Perl administrator e-mail     |
         |                           | address                       |
+        | extensions                | What extensions do you wish   |
+        |                           | to include?                   |
         | fast-stdio                | Use the "fast stdio" if       |
         |                           | available?                    |
         | files-large               | Try to understand large       |
@@ -258,6 +263,7 @@ DESCRIPTION
         | previous-keep             | Keep the previous value       |
         | random-func               | Use which function to         |
         |                           | generate random numbers?      |
+        | relocatable-inc           | Use relocatable @INC?         |
         | setuid-emu                | Do you want to do             |
         |                           | setuid/setgid emulation?      |
         | setuid-secure             | Does your kernel have         |
