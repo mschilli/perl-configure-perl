@@ -8,7 +8,7 @@ use Data::Dumper;
 use YAML qw(Dump LoadFile);
 use Log::Log4perl qw(:easy);
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 ###########################################
 sub new {
@@ -29,6 +29,13 @@ sub new {
     $self->{exp}->raw_pty(1);
 
     bless $self, $class;
+
+    if(defined $self->{yml_file}) {
+        my $data = LoadFile $self->{yml_file};
+        $self->define(%$data);
+    }
+
+    return $self;
 }
 
 ###########################################

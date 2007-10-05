@@ -1,5 +1,9 @@
 Revision history for Perl extension Perl::Configure.
 
+0.06 10/04/2007
+    (ms) Added yml configuration option and added it to the
+         perl-configure command line application.
+
 0.05 09/28/2007
     (ms) Added remove() method to Perl::Configure::Questions.
     (ms) Added missing perl-5.9 questions
