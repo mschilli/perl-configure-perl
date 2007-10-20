@@ -1,5 +1,8 @@
 Revision history for Perl extension Perl::Configure.
 
+0.07 10/19/2007
+    (ms) Fixed "f" option bug in perl-configure script
+
 0.06 10/04/2007
     (ms) Added yml configuration option and added it to the
          perl-configure command line application.
