@@ -9,7 +9,7 @@ use Log::Log4perl qw(:easy);
 
 my @yml_file_option = ();
 
-getopts("fhv", \my %opts);
+getopts("f:hv", \my %opts);
 
 if($opts{v}) {
     Log::Log4perl->easy_init({level => $DEBUG, file => "stdout"});
