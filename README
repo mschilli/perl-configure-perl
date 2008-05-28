@@ -79,9 +79,9 @@ DESCRIPTION
 
     Here's the list of the mappings defined in this release:
 
-        .---------------------------+-------------------------------.
+        .-----------------------------------------------------------.
         | Token                     | Question                      |
-        |=--------------------------+------------------------------=|
+        +---------------------------+-------------------------------+
         | 64-bit-integers           | Try to use 64-bit integers,   |
         |                           | if available?                 |
         | 64-bit-support            | Try to use maximal 64-bit     |
