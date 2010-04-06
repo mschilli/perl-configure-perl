@@ -12,6 +12,7 @@ WriteMakefile(
         Log::Log4perl => 1.0,
         Getopt::Long  => 2.35,
     }, # e.g., Module::Name => 1.1
+    $ExtUtils::MakeMaker::VERSION >= 6.50 ? (%$meta_merge) : (),
     EXE_FILES         => [ 'eg/perl-configure' ],
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Perl/Configure.pm', # retrieve abstract from module
