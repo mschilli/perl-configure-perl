@@ -655,3 +655,7 @@ __DATA__
 - extensions
 - What extensions do you wish to include?
 - ''
+---
+- dtrace
+- Support DTrace if available?
+- 'n'

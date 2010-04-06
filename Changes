@@ -1,7 +1,8 @@
 Revision history for Perl extension Perl::Configure.
 
-0.08 05/28/2008
+0.08 03/05/2010
     (ms) Really fixed "f" option bug in perl-configure script
+    (ms) Fixed 'dtrace' question for perl-5.10.1
 
 0.07 10/19/2007
     (ms) Fixed "f" option bug in perl-configure script

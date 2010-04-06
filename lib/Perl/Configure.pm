@@ -8,7 +8,7 @@ use Data::Dumper;
 use YAML qw(Dump LoadFile);
 use Log::Log4perl qw(:easy);
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 ###########################################
 sub new {
@@ -229,6 +229,7 @@ Here's the list of the mappings defined in this release:
     | domain-name               | What is your domain name?     |
     | double-align              | Doubles must be aligned on a  |
     |                           | how-many-byte boundary?       |
+    | dtrace                    | Support DTrace if available?  |
     | dynamic-extensions        | What extensions do you wish   |
     |                           | to load dynamically?          |
     | email                     | What is your e-mail address?  |

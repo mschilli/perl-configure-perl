@@ -2,6 +2,15 @@ use 5.006;
 use ExtUtils::MakeMaker;
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
+
+my $meta_merge = {
+    META_MERGE => {
+        resources => {
+            repository  => 'http://github.com/mschilli/perl-configure-perl',
+        },
+    }
+};
+
 WriteMakefile(
     NAME              => 'Perl::Configure',
     VERSION_FROM      => 'lib/Perl/Configure.pm', # finds $VERSION
