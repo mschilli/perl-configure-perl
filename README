@@ -1,5 +1,5 @@
 ######################################################################
-    Perl::Configure 0.08
+    Perl::Configure 0.09
 ######################################################################
 
 NAME
@@ -113,6 +113,7 @@ DESCRIPTION
         | domain-name               | What is your domain name?     |
         | double-align              | Doubles must be aligned on a  |
         |                           | how-many-byte boundary?       |
+        | dtrace                    | Support DTrace if available?  |
         | dynamic-extensions        | What extensions do you wish   |
         |                           | to load dynamically?          |
         | email                     | What is your e-mail address?  |

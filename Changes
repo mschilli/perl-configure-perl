@@ -1,6 +1,6 @@
 Revision history for Perl extension Perl::Configure.
 
-0.09 07/18/2016
+0.09 2016-07-18
     (ms) [rt.perl.org #128139] Escaped literal { in regex to fix
          "Unescaped left brace in regex is deprecated" warnings in
          5.16 and up.
