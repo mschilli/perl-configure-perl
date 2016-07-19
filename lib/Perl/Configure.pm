@@ -8,7 +8,7 @@ use Data::Dumper;
 use YAML qw(Dump LoadFile);
 use Log::Log4perl qw(:easy);
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 ###########################################
 sub new {

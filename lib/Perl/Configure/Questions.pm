@@ -107,7 +107,7 @@ sub patterns {
         my $pattern = "";
         my $rest    = $question;
 
-        { if($rest =~ /\G(.*?)ANY{.*?}(.*)/g) {
+        { if($rest =~ /\G(.*?)ANY\{.*?}(.*)/g) {
               $pattern .= quotemeta($1);
               $pattern .= ".*?";
               $rest     = $2;
